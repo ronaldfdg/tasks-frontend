@@ -1,0 +1,21 @@
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="description">Descripci&oacute;n de la tarea</label>
+      <input type="text" class="form-control" id="description" [(ngModel)]="task.description" name="description" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-auto my-1">
+      <div class="custom-control custom-checkbox mr-sm-2">
+        <input type="checkbox" class="custom-control-input" id="pending" (change)="setPending()" [(ngModel)]="task.pending" name="pending">
+        <label class="custom-control-label" for="pending">&nbsp;{{ (pending) ? 'Tarea Completada' : 'Tarea Pendiente'}}</label>
+      </div>
+    </div>
+  </div><br>
+  <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!task.id else elseBlock">Registrar</button>
+  <ng-template #elseBlock>
+    <button class="btn btn-primary" role="button" (click)="update()">Editar</button>
+  </ng-template>
+
+</form>

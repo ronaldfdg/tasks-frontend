@@ -1,0 +1,20 @@
+.container {
+  height: 50px;
+  position: relative;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.custom-control-label::before,
+.custom-control-label::after {
+top: .2rem;
+width: 1.5rem;
+height: 1.5rem;
+}

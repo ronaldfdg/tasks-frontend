@@ -1,0 +1,42 @@
+<div class="card border-primary mb-3">
+  <div class="card-header">Tareas</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Lista de tareas</h5>
+    <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/tasks/create']">Crear tarea</button>
+    </div>
+    <div class="container">
+      <div class="center">
+        <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/tasks/pending']"><i class="fa fa-times-circle" style="font-size:24px"></i> Pendientes</button> |
+        <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/tasks/completed']"><i class="fa fa-check-circle" style="font-size:24px"></i> Completadas</button>
+      </div>
+    </div><br>
+    <div *ngIf="pendingTasks?.length == 0" class="alert alert-info" role="alert">
+      <strong>No hay tareas pendientes registradas en la base de datos</strong>
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="pendingTasks?.length > 0">
+      <thead>
+        <tr align="center">
+          <th>Estado</th>
+          <th>Descripci&oacute;n</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of pendingTasks" align="center">
+          <td>
+            <div class="form-control-lg custom-control custom-checkbox">
+              <input id="pending" class="custom-control-input" type="checkbox" [checked]="!task.pending" disabled>
+              <label class="custom-control-label" for="pending"></label>
+            </div>
+          </td>
+          <td>{{task.description}}</td>
+          <td>
+            <button type="button" name="edit" [routerLink]="['/tasks/create', task.id]" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>&nbsp;
+            <button type="button" name="delete" (click)='delete(task)' class="btn btn-danger btn-sm"><i class="fas fa-trash" aria-hidden="true"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
